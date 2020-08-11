@@ -26,8 +26,10 @@ sns.scatterplot(well_header_clean['Surf_Longitude'],
 # cluster lat long
 from sklearn.cluster import DBSCAN
 lat_longs = well_header_clean[['Surf_Longitude','Surf_Latitude']]
-dbscan = DBSCAN(eps=0.1, min_samples = 10)
+dbscan = DBSCAN(eps=0.08, min_samples = 10)
 clusters = dbscan.fit_predict(lat_longs)
+
+np.unique(np.array(clusters))
 
 # quick plot with clusters
 plt.figure(figsize = (15,8))
