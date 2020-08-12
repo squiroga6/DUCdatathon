@@ -1,5 +1,5 @@
 # import libraries
-from sklearn.tree import DecisionTreeRegressor
+from sklearn import svm
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from math import sqrt
@@ -34,11 +34,11 @@ X.drop('profile_Directional',axis=1,inplace=True)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=324)
 
 # fit regressor
-tree_regressor = DecisionTreeRegressor()
-tree_regressor.fit(X_train, y_train)
+regr = svm.SVR()
+regr.fit(X_train, y_train)
 
 # get prediction
-y_prediction = tree_regressor.predict(X_test)
+y_prediction = regr.predict(X_test)
 
 # get RMSE
 RMSE = sqrt(mean_squared_error(y_true = y_test, y_pred = y_prediction))
